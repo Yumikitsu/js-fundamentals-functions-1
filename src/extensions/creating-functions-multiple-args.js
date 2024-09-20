@@ -10,6 +10,14 @@
 //
 // TODO: write code below
 
+function listLowerToUpper(lower, upper) {
+  const array = []
+  for (let i = lower; i <= upper; i++) {
+    array.push(i)
+  }
+  return array
+}
+
 // 2. define a function that takes two arguments: a string and a number.
 // The function should return the same string but in upper case with exclamation
 // marks appended to the end. The number of exclamation marks should be
@@ -21,6 +29,10 @@
 // error, 10    | ERROR!!!!!!!!!!
 //
 // TODO: write code below
+
+function exclamify(word, amount) {
+  return `${word.toUpperCase()}${'!'.repeat(amount)}`
+}
 
 // 3. define a function that takes two arguments: a string and a number.
 // The function should return the new time in 24hr time after adding the additional time in minutes.
@@ -34,9 +46,34 @@
 // '23:50', 30  | '00:20'
 // TODO: write code below
 
+function updateTime(timeNow, minutesToAdd) {
+  const time = timeNow.split(':')
+  let hour = Number(time[0])
+  let minute = Number(time[1])
+  minute += minutesToAdd
+  hour += Math.floor(minute / 60)
+  hour = hour % 24
+  minute = minute % 60
+  let hourString = ''
+  let minuteString = ''
+  if (hour === 0) {
+    hourString = '00'
+  } else {
+    hourString = `${hour}`
+  }
+
+  if (minute < 10) {
+    minuteString = `0${minute}`
+  } else {
+    minuteString = `${minute}`
+  }
+
+  return `${hourString}:${minuteString}`
+}
+
 // TODO: change the exported value to be the name of the function you defined
 module.exports = {
-  a: undefined, // 1. change undefined to be the name of the function defined to create the range of numbers (the first todo)
-  b: undefined, // 2. change undefined to be the name of the function defined to return the string with exclamations (the second todo)
-  c: undefined // etc
+  a: listLowerToUpper, // 1. change undefined to be the name of the function defined to create the range of numbers (the first todo)
+  b: exclamify, // 2. change undefined to be the name of the function defined to return the string with exclamations (the second todo)
+  c: updateTime // etc
 }
